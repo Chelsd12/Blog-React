@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Blogs from './Blogs';
 import BlogView from './BlogView';
-import { getBlogs, } from '../reducers/blogs';
+import { getBlogs } from '../reducers/blogs';
 import { Loader, Segment, Dimmer } from 'semantic-ui-react';
 
 class FetchBlogs extends React.Component {

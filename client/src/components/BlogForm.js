@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { updateBlog, addBlog } from '../reducers/blogs'
-import { Form, Container } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 class BlogForm extends React.Component {
     initialState = { name: "", body: "", author: ""};
@@ -16,7 +16,7 @@ class BlogForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const blog = { ...this.state };
-        const { closeForm, dispatch } = this.props;
+        const { dispatch, closeForm } = this.props;
         const func = this.props.id ? updateBlog : addBlog;
         dispatch(func(blog));
         closeForm();
@@ -27,39 +27,33 @@ class BlogForm extends React.Component {
     };//end of handleChange
 
     render() {
-        const { name, body, author } = this.props;
+        const { name, body, author } = this.state;
         return (
-            <Container>
-                <div>
-                    <Form onSubmit={this.handleSubmit}>
-                    <Form.Input 
-                    name="name" 
-                    placeholder="Title"
-                    label="Title"
-                    required
-                    value={name} 
-                    onChange={this.handleChange} 
-                    />
-                    <Form.Input 
-                    name="body"
-                    placeholder="Body"
-                    label="Body"
-                    required 
-                    value={body} 
-                    onChange={this.handleChange} 
-                    />
-                    <Form.Input 
-                    name="author"
-                    placeholder="Author"
-                    label="Author"
-                    required 
-                    value={author} 
-                    onChange={this.handleChange} 
-                    />
-                    <Form.Button color="green">Submit</Form.Button>
-                    </Form>
-                </div>
-            </Container>
+            <Form onSubmit={this.handleSubmit}>
+            <Form.Input 
+            name="name" 
+            placeholder="Title"
+            label="Title"
+            required
+            value={name} 
+            onChange={this.handleChange} 
+            />
+            <Form.Input
+            name="body"
+            placeholder="Body"
+            label="Body"
+            value={body} 
+            onChange={this.handleChange} 
+            />
+            <Form.Input 
+            name="author"
+            placeholder="Author"
+            label="Author"
+            value={author} 
+            onChange={this.handleChange} 
+            />
+            <Form.Button color="green">Submit</Form.Button>
+            </Form>
         )//end of return
     };//end of render
 };//end of class BlogForm

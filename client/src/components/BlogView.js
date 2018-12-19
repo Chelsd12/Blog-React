@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import BlogForm from './BlogForm';
-import { Header, Card, Button } from 'semantic-ui-react';
+import { Header, Card, Button, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { deleteBlog } from '../reducers/blogs';
 
@@ -25,8 +24,10 @@ class BlogView extends React.Component {
         const { showForm } = this.state;
         const { blog = {} } = this.props;
     return (
-        <BlogContainer>
+        <Container>
             <Link to="/blogs">Back to Blogs</Link>
+            <br />
+            <br />
             <Button onClick={this.toggleForm}>
                 { showForm ? 'Cancel' : 'Edit' }
             </Button>
@@ -48,19 +49,10 @@ class BlogView extends React.Component {
                 </Card>
             </div>
             }
-        </BlogContainer>
+        </Container>
         )//end of return
     };//end of render
 };// end of class BlogView
-
-const BlogContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-`;
 
 const mapStateToProps = (store, props) => {
   return { blog: store.blogs.find( b => b.id === parseInt(props.match.params.id )) }
