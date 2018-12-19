@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BlogForm from './BlogForm';
-import { Header, Card, Button, Container } from 'semantic-ui-react';
+import { Header, Card, Button, Container, Icon, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { deleteBlog } from '../reducers/blogs';
 
@@ -28,25 +28,29 @@ class BlogView extends React.Component {
             <Link to="/blogs">Back to Blogs</Link>
             <br />
             <br />
-            <Button onClick={this.toggleForm}>
-                { showForm ? 'Cancel' : 'Edit' }
+            <Button animated='fade' color='blue' onClick={this.toggleForm}>
+                <Button.Content visible>{ showForm ? 'Cancel' : 'Edit' }</Button.Content>
+                <Button.Content hidden> 
+                    <Icon name='edit'/>
+                </Button.Content>
             </Button>
-            <Button onClick={this.handleDelete}>
-                Delete 
+            <Button animated='fade' color='red' onClick={this.handleDelete}>
+                <Button.Content visible>Delete</Button.Content>
+                <Button.Content hidden>
+                    <Icon name='trash'/>
+                </Button.Content>
             </Button>
             { showForm ?
             <BlogForm {...blog} closeForm={this.toggleForm} />
             :
             <div>
             <Header as="h3" textAlign="center">{blog.name}</Header>
-                <Card>
-                <Card.Content>
-                        {blog.author}
-                        <br />
-                        <br />
-                        {blog.body}
-                </Card.Content>
-                </Card>
+                <Segment>
+                    {blog.author}
+                    <br />
+                    <br />
+                    {blog.body}
+                </Segment>
             </div>
             }
         </Container>

@@ -2,7 +2,7 @@ import React from 'react';
 import BlogForm from './BlogForm';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Container, Header, Card, Button } from 'semantic-ui-react';
+import { Container, Header, Card, Button, Icon } from 'semantic-ui-react';
 
 class Blogs extends React.Component {
     state = { showForm: false };
@@ -24,7 +24,12 @@ class Blogs extends React.Component {
                 </Card.Content>
                 <Card.Content extra>
                     <Link to={`/blogs/${blog.id}`}>
-                        View Blog
+                    <Button animated='fade' color="teal">
+                    <Button.Content visible>View Blog</Button.Content>
+                    <Button.Content hidden>
+                        <Icon name='eye' />
+                    </Button.Content>
+                    </Button>
                     </Link>
                 </Card.Content>
             </Card>
@@ -35,7 +40,7 @@ class Blogs extends React.Component {
         const { showForm } = this.state;
         return (
             <Container>
-                <Header as="h3" textAlign="center">Blogs</Header>
+                <Header size='huge' textAlign="center" color="teal">Blogs</Header>
                 <Button onClick={this.toggleForm}>
                     { showForm ? 'Cancel' : 'Create a new blog' }
                 </Button>

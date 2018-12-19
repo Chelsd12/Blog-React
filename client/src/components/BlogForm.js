@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { updateBlog, addBlog } from '../reducers/blogs'
 import { Form } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 class BlogForm extends React.Component {
     initialState = { name: "", body: "", author: ""};

@@ -1,28 +1,35 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 
-const Navbar = () => (
-    <Menu inverted>
-        <Menu.Item>
-            <NavLink exact activeStyle={styles.active} to="/">
-                Home
+export default class Navbar extends React.Component {
+    state = { activeItem: 'home' }
+  
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  
+    render() {
+      const { activeItem } = this.state
+      return (
+        <Segment inverted>
+          <Menu inverted pointing secondary>
+            <NavLink exact to="/">
+            <Menu.Item 
+                name='home' 
+                active={activeItem === 'home'} 
+                onClick={this.handleItemClick} 
+                color="teal"
+            />
             </NavLink>
-        </Menu.Item>
-        <Menu.Item>
-            <NavLink exact activeStyle={styles.active} to="/blogs">
-                Blogs
+            <NavLink exact to="/blogs">
+            <Menu.Item
+              name='Blogs'
+              active={activeItem === 'Blogs'}
+              onClick={this.handleItemClick}
+              color="teal"
+            />
             </NavLink>
-        </Menu.Item>
-    </Menu>
-);//end of const Navbar
-
-const styles = {
-    active: {
-        textDecoration: "none",
-        fontWeight: "bold",
-        color: "purple"
+          </Menu>
+        </Segment>
+      )
     }
-};//end of const styles
-
-export default Navbar;
+  };//end of class Navbar
